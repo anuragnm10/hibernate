@@ -14,7 +14,7 @@ public class Student {
 	private int Id;
 	private String name;
 	private String phone;
-	@OneToOne(cascade = CascadeType.REMOVE)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 	
 	public Student() {};

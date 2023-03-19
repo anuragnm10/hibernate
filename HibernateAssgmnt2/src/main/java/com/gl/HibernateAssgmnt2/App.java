@@ -19,28 +19,26 @@ public class App
     {
     	Address address = new Address("10003","Indiana","Ind","USA");
     	Student student = new Student("Amogh","773299163",address);
-    	student.setId(5);
-//    	System.out.println(insertStudent(student));
+    	student.setId(6);
     	deleteStudent(student);
+//    	System.out.println(insertStudent(student));
+    	
+//    	address.setPin("10003");
+//    	Session sess = factory.openSession();
+//    	Transaction tx = sess.beginTransaction();
+//    	sess.remove(address);
+//    	tx.commit();
+//    	sess.close();
+    	
     }
     
 	private static int insertStudent(Student student) {
-    	System.out.println(insertAddress(student.getAddress()));
     	Session session = factory.openSession();
     	Transaction tx = session.beginTransaction();
     	session.persist(student);
     	tx.commit();
     	session.close();
     	return student.getId();
-    }
-    
-    private static String insertAddress(Address address) {
-    	Session session = factory.openSession();
-    	Transaction tx = session.beginTransaction();
-    	session.persist(address);
-    	tx.commit();
-    	session.close();
-    	return address.getPin();
     }
     
     private static void deleteStudent(Student student) {
