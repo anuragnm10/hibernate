@@ -2,8 +2,10 @@ package com.gl.HibernateAssgmnt5.entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,14 +17,15 @@ public class Project {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	private String pname;
-	@ManyToMany(mappedBy = "projects")
-	private List<Employee> employees;
+	@ManyToMany(mappedBy = "projects", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	List<Employee> employees;
 	
 	public Project() {}
 
-	public Project(String pname) {
+	public Project(String pname, List<Employee> employees) {
 		super();
 		this.pname = pname;
+		this.employees = employees;
 	}
 
 	public int getId() {
@@ -41,17 +44,17 @@ public class Project {
 		this.pname = pname;
 	}
 
-	public List<Employee> getEmpList() {
+	public List<Employee> getEmployees() {
 		return employees;
 	}
 
-	public void setEmpList(List<Employee> empList) {
-		this.employees = empList;
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
 	}
 
 	@Override
 	public String toString() {
-		return "Project [Id=" + Id + ", pname=" + pname + ", empList=" + employees + "]";
+		return "Project [Id=" + Id + ", pname=" + pname + "]";
 	};
 	
 	
